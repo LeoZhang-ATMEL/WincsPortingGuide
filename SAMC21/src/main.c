@@ -26,11 +26,23 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
+
+#include "winc_definitions.h"
 #include "app_wincs02.h"
 
 /* Structure to hold the object handles for the modules in the system. */
-SYSTEM_OBJECTS sysObj;
-
+static const WDRV_WINC_SPI_CFG wdrvWincSpiInitData =
+{
+    .txDMAChannel       = 0,
+    //.rxDMAChannel       = SYS_DMA_CHANNEL_1,
+    //.txAddress          = (void *)&(SERCOM4_REGS->SPIM.SERCOM_DATA),
+    //.rxAddress          = (void *)&(SERCOM4_REGS->SPIM.SERCOM_DATA),
+};
+static const WDRV_WINC_SYS_INIT wdrvWincInitData = {
+    .pSPICfg    = &wdrvWincSpiInitData,
+    .intSrc     = 0
+};
+SYS_MODULE_OBJ  drvWifiWinc;
 // *****************************************************************************
 // *****************************************************************************
 // Section: Main Entry Point
@@ -42,10 +54,13 @@ int main ( void )
     /* Initialize all modules */
     SYS_Initialize ( NULL );
 
+    /* Initialize the WINC Driver */
+    drvWifiWinc = WDRV_WINC_Initialize(0, (SYS_MODULE_INIT*)&wdrvWincInitData);
+    APP_WINCS02_Initialize();
     while ( true )
     {
         /* Maintain Device Drivers */
-         WDRV_WINC_Tasks(sysObj.drvWifiWinc);
+         WDRV_WINC_Tasks(drvWifiWinc);
 
         /* Maintain the application's state machine. */
             /* Call Application task APP_WINCS02. */

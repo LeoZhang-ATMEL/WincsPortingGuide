@@ -160,9 +160,7 @@ static OSAL_CRITSECT_DATA_TYPE OSAL_CRIT_Enter(OSAL_CRIT_TYPE severity)
     return (0);
   }
   /*if priority is set to HIGH the user wants interrupts disabled*/
-  //readData = SYS_INT_Disable();
-  // Todo 20241225
-    readData = 0;
+  readData = SYS_INT_Disable();
   return ((uint32_t)readData);
 }
 
@@ -177,7 +175,7 @@ static void OSAL_CRIT_Leave(OSAL_CRIT_TYPE severity, OSAL_CRITSECT_DATA_TYPE sta
   }
   /*if priority is set to HIGH the user wants interrupts re-enabled to the state
   they were before disabling.*/
-  //SYS_INT_Restore((bool)status);
+  SYS_INT_Restore((bool)status);
   // Todo 20241225;
 }
 

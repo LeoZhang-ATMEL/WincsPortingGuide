@@ -32,15 +32,15 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <time.h>
-#include "configuration.h"
+#include "winc_configuration.h"
 #include "driver/driver_common.h"
 
 #include "app_wincs02.h"
 #include "system/system_module.h"
-#include "system/console/sys_console.h"
 #include "system/wifi/sys_wincs_wifi_service.h"
 #include "system/sys_wincs_system_service.h"
 #include "system/net/sys_wincs_net_service.h"
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions

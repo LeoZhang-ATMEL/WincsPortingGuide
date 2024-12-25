@@ -57,3 +57,26 @@ To build this application, open the project file \(`apps/tcp_client/sam_e54_xpro
     ![](docs/images/GUID-946340A6-82AB-41FD-B5EA-5E0FB6DA0DA8-low.png)
 
 
+## Porting to the new Platform
+The SAMC21 folder serves as a reference project for porting the WINC driver to a new MCU platform. The `SAMC21/src/winc/` directory should be integrated into the new platform project files.
+
+1. Debug Macros in `winc_definitions.h`
+    The winc_definitions.h file includes debug macros such as `SYS_CONSOLE_PRINT` and `SYS_DEBUG_PRINT`. The application can implement these macros to enable debugging features via the console.
+
+2. Configuration Parameters in `winc_configuration.h`
+    The `winc_configuration.h` file contains parameters for configuring the WINC driver. These settings can be adjusted by the application to suit the new platform.
+
+3. Adapting SPI and GPIO Drivers
+   The following files need to be implemented by the application to adapt to the new platform's SPI and GPIO drivers:
+   - `driver\wifi\wincs02\dev\wdrv_winc_eint.c`
+   - `driver\wifi\wincs02\dev\wdrv_winc_spi.c`
+
+4. Driver Implementation Guidance
+    The `winc_configuration.h` file defines helper warning macros to indicate which drivers need to be implemented. However, not all drivers are required. The application can optimize the integration by leveraging platform-specific interface functions.
+
+    **Best Practices**
+    - Retain the original function names.
+    - Use the original functions as wrapper interfaces.
+
+    These practices simplify maintenance and ensure compatibility with future updates that align with the original interface design.
+

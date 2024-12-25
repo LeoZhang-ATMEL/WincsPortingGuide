@@ -539,7 +539,7 @@ SYS_WINCS_RESULT_t SYS_WINCS_WIFI_SrvCtrl
         case SYS_WINCS_WIFI_GET_DRV_STATUS:
         {
             *(int8_t*)input = '\0';
-            *(int8_t*)input = WDRV_WINC_Status(sysObj.drvWifiWinc);
+            *(int8_t*)input = WDRV_WINC_Status(drvWifiWinc);
             break;
         }
         

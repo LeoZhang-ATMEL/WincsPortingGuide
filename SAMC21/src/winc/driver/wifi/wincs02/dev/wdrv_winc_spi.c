@@ -35,7 +35,7 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "configuration.h"
+#include "winc_configuration.h"
 #include "definitions.h"
 #include "osal/osal.h"
 #include "wdrv_winc_common.h"
@@ -62,9 +62,11 @@ typedef struct
 // *****************************************************************************
 // *****************************************************************************
 
+#if 0 // 20241225: No used after porting to the new platform, just keep here for reference
 static WDRV_WINC_SPIDCPT spiDcpt = {.isInit = false};
 static CACHE_ALIGN uint8_t dummyDataTx[CACHE_ALIGNED_SIZE_GET(4)];
 static CACHE_ALIGN uint8_t dummyDataRx[CACHE_ALIGNED_SIZE_GET(4)];
+#endif
 
 // *****************************************************************************
 // *****************************************************************************
@@ -72,10 +74,12 @@ static CACHE_ALIGN uint8_t dummyDataRx[CACHE_ALIGNED_SIZE_GET(4)];
 // *****************************************************************************
 // *****************************************************************************
 
+#if 0 // 20241225: No used after porting to the new platform, just keep here for reference
 static void lDRV_SPI_PlibCallbackHandler(SYS_DMA_TRANSFER_EVENT status, uintptr_t contextHandle)
 {
     OSAL_SEM_PostISR((OSAL_SEM_HANDLE_TYPE*)contextHandle);
 }
+#endif
 
 //*******************************************************************************
 /*
@@ -94,6 +98,9 @@ static void lDRV_SPI_PlibCallbackHandler(SYS_DMA_TRANSFER_EVENT status, uintptr_
 
 bool WDRV_WINC_SPISendReceive(void* pTransmitData, void* pReceiveData, size_t size)
 {
+    #warning("The app needs Implement the SPISendReceive Function")
+    return false;
+#if 0
     SYS_DMA_SOURCE_ADDRESSING_MODE      sourceAddrMode = SYS_DMA_SOURCE_ADDRESSING_MODE_FIXED;
     SYS_DMA_DESTINATION_ADDRESSING_MODE destAddrMode   = SYS_DMA_DESTINATION_ADDRESSING_MODE_FIXED;
 
@@ -143,6 +150,7 @@ bool WDRV_WINC_SPISendReceive(void* pTransmitData, void* pReceiveData, size_t si
 #endif
 
     return true;
+#endif
 }
 
 //*******************************************************************************
@@ -162,6 +170,9 @@ bool WDRV_WINC_SPISendReceive(void* pTransmitData, void* pReceiveData, size_t si
 
 bool WDRV_WINC_SPIOpen(void)
 {
+    #warning("The app needs Implement the WDRV_WINC_SPIOpen Function")
+    return false;
+#if 0
     if ((false == spiDcpt.isInit) || (true == spiDcpt.isOpen))
     {
         return false;
@@ -180,6 +191,7 @@ bool WDRV_WINC_SPIOpen(void)
     spiDcpt.isOpen = true;
 
     return true;
+#endif
 }
 
 //*******************************************************************************
@@ -199,6 +211,9 @@ bool WDRV_WINC_SPIOpen(void)
 
 void WDRV_WINC_SPIInitialize(const WDRV_WINC_SPI_CFG *const pInitData)
 {
+    #warning("The app needs Implement the WDRV_WINC_SPIInitialize Function")
+    return;
+#if 0
     if ((NULL == pInitData) || (true == spiDcpt.isInit))
     {
         return;
@@ -209,6 +224,7 @@ void WDRV_WINC_SPIInitialize(const WDRV_WINC_SPI_CFG *const pInitData)
 
     spiDcpt.isOpen = false;
     spiDcpt.isInit = true;
+#endif
 }
 
 //*******************************************************************************
@@ -228,6 +244,9 @@ void WDRV_WINC_SPIInitialize(const WDRV_WINC_SPI_CFG *const pInitData)
 
 void WDRV_WINC_SPIDeinitialize(void)
 {
+    #warning("The app needs Implement the WDRV_WINC_SPIInitialize Function")
+    return;
+#if 0
     if (false == spiDcpt.isInit)
     {
         return;
@@ -238,6 +257,7 @@ void WDRV_WINC_SPIDeinitialize(void)
 
     spiDcpt.isOpen = false;
     spiDcpt.isInit = false;
+#endif
 }
 
 //DOM-IGNORE-END

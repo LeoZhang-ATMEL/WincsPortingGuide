@@ -24,8 +24,8 @@ Microchip or any third party.
 #ifndef CONF_WINC_DEV_H
 #define CONF_WINC_DEV_H
 
-//#include "configuration.h"
-//#include "definitions.h"
+#include "winc_configuration.h"
+#include "winc_definitions.h"
 
 
 #endif /* CONF_WINC_DEV_H */

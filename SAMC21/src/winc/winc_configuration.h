@@ -163,7 +163,39 @@ extern "C" {
 // Section: Application Configuration
 // *****************************************************************************
 // *****************************************************************************
+// Todo 20241225: Below function needs to be implemented
+#warning("The app needs define the WDRV_WINC_INT_Get() function")
+#define WDRV_WINC_INT_Get() (0)
 
+#warning("The app needs define the WDRV_WINC_RESETN_Clear() function")
+#define WDRV_WINC_RESETN_Clear()
+
+#warning("The app needs define the WDRV_WINC_RESETN_Clear() function")
+#define WDRV_WINC_RESETN_Set();
+
+#warning("The app needs define the WDRV_WINC_RESETN_Get() function")
+#define WDRV_WINC_RESETN_Get() (0)
+
+#warning("The app needs define the SYS_TIME_DelayMS( uint32_t ms, SYS_TIME_HANDLE* handle ) function")
+#define SYS_TIME_DelayMS(ms, handle)
+
+#warning("The app needs define the SYS_TIME_DelayIsComplete ( SYS_TIME_HANDLE handle ) function")
+#define SYS_TIME_DelayIsComplete(handle) (0)
+
+#warning("The app needs define the void EIC_CallbackRegister(EIC_PIN pin, EIC_CALLBACK callback, uintptr_t context) function")
+#define EIC_CallbackRegister(pin, callback, context)
+
+#warning("The app needs define the void EIC_InterruptEnable (EIC_PIN pin) function")
+#define EIC_InterruptEnable(pin)
+
+#warning("The app needs define the void EIC_InterruptDisable (EIC_PIN pin) function")
+#define EIC_InterruptDisable(pin)
+
+#warning("The app needs define the bool SYS_INT_Disable( void ) function")
+#define SYS_INT_Disable() (0)
+
+#warning("The app needs define the void SYS_INT_Restore( bool state ) function")
+#define SYS_INT_Restore(state)
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

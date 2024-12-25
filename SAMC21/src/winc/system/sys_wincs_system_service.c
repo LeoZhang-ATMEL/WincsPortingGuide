@@ -241,7 +241,7 @@ SYS_WINCS_RESULT_t SYS_WINCS_SYSTEM_SrvCtrl
         
         case SYS_WINCS_SYSTEM_SET_SYS_EVENT_CALLBACK:
         {
-            WDRV_WINC_RegisterSystemEventCallback(sysObj.drvWifiWinc, SYS_WINCS_SYSTEM_EventCallback);
+            WDRV_WINC_RegisterSystemEventCallback(drvWifiWinc, SYS_WINCS_SYSTEM_EventCallback);
             break;
         }
         

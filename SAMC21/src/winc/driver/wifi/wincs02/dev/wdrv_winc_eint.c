@@ -37,9 +37,8 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-//#include "configuration.h"
-//#include "definitions.h"
-// Todo: 202412225 Include the platform related headers
+#include "winc_configuration.h"
+#include "winc_definitions.h"
 
 #if defined(INT_SOURCE_CHANGE_NOTICE) && (WDRV_WINC_INT_SOURCE == INT_SOURCE_CHANGE_NOTICE)
 #ifdef PLIB_PORTS_ExistsPinChangeNoticePerPort

@@ -53,7 +53,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#include "configuration.h"
+#include "winc_configuration.h"
 
 #include "wdrv_winc.h"
 #include "wdrv_winc_bssfind.h"

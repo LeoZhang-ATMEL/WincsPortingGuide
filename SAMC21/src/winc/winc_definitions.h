@@ -48,6 +48,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include "driver/wifi/wincs02/include/wdrv_winc_api.h"
 #include "system/system.h"
 #include "osal/osal.h"
 #include "app_wincs02.h"
@@ -75,129 +76,70 @@ extern "C" {
 // Section: System Functions
 // *****************************************************************************
 // *****************************************************************************
-
 // *****************************************************************************
-/* System Initialization Function
-
-  Function:
-    void SYS_Initialize( void *data )
+/* Invalid System Time handle value to a software timer
 
   Summary:
-    Function that initializes all modules in the system.
+    Invalid handle value to a software timer instance.
 
   Description:
-    This function initializes all modules in the system, including any drivers,
-    services, middleware, and applications.
-
-  Precondition:
-    None.
-
-  Parameters:
-    data            - Pointer to the data structure containing any data
-                      necessary to initialize the module. This pointer may
-                      be null if no data is required and default initialization
-                      is to be used.
-
-  Returns:
-    None.
-
-  Example:
-    <code>
-    SYS_Initialize ( NULL );
-
-    while ( true )
-    {
-        SYS_Tasks ( );
-    }
-    </code>
+    Defines the invalid handle value to a timer instance.
 
   Remarks:
-    This function will only be called once, after system reset.
+    Do not rely on the actual value as it may change in different versions
+    or implementations of the SYS Time service.
 */
 
-void SYS_Initialize( void *data );
+#define SYS_TIME_HANDLE_INVALID   ((SYS_TIME_HANDLE) (-1))
 
-// *****************************************************************************
-/* System Tasks Function
+/* System Time Handle
 
-Function:
-    void SYS_Tasks ( void );
+  Summary:
+    Handle to a software timer instance.
 
-Summary:
-    Function that performs all polled system tasks.
+  Description:
+    This data type is a handle to a software timer instance.  It can be
+    used to access and control a software timer.
 
-Description:
-    This function performs all polled system tasks by calling the state machine
-    "tasks" functions for all polled modules in the system, including drivers,
-    services, middleware and applications.
-
-Precondition:
-    The SYS_Initialize function must have been called and completed.
-
-Parameters:
-    None.
-
-Returns:
-    None.
-
-Example:
-    <code>
-    SYS_Initialize ( NULL );
-
-    while ( true )
-    {
-        SYS_Tasks ( );
-    }
-    </code>
-
-Remarks:
-    If the module is interrupt driven, the system will call this routine from
-    an interrupt context.
+  Remarks:
+    Do not rely on the underlying type as it may change in different versions
+    or implementations of the SYS Time service.
 */
+typedef uintptr_t SYS_TIME_HANDLE;
 
-void SYS_Tasks ( void );
+/* Errors that have the potential to cause a system crash. */
+#define SYS_ERROR_FATAL 0
 
+/* Errors that have the potential to cause incorrect behavior. */
+#define SYS_ERROR_ERROR 1
+
+/* Warnings about potentially unexpected behavior or side effects. */
+#define SYS_ERROR_WARNING 2
+
+/* Information helpful to understanding potential errors and warnings. */
+#define SYS_ERROR_INFO 3
+
+/* Verbose information helpful during debugging and testing. */
+#define SYS_ERROR_DEBUG 4
+
+typedef uint32_t SYS_ERROR_LEVEL;
+
+#define SYS_CONSOLE_PRINT(fmt, ...)
+#ifndef SYS_DEBUG_PRINT
+    #define SYS_DEBUG_PRINT(level, fmt, ...)
+#endif
 // *****************************************************************************
 // *****************************************************************************
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
 
-// *****************************************************************************
-/* System Objects
-
-Summary:
-    Structure holding the system's object handles
-
-Description:
-    This structure contains the object handles for all objects in the
-    MPLAB Harmony project's system configuration.
-
-Remarks:
-    These handles are returned from the "Initialize" functions for each module
-    and must be passed into the "Tasks" function for each module.
-*/
-
-typedef struct
-{
-    SYS_MODULE_OBJ  drvWifiWinc;
-    SYS_MODULE_OBJ  sysDebug;
-
-    SYS_MODULE_OBJ  sysTime;
-    SYS_MODULE_OBJ  sysConsole0;
-
-
-} SYSTEM_OBJECTS;
-
+extern SYS_MODULE_OBJ  drvWifiWinc;
 // *****************************************************************************
 // *****************************************************************************
 // Section: extern declarations
 // *****************************************************************************
 // *****************************************************************************
-
-
-
-extern SYSTEM_OBJECTS sysObj;
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
